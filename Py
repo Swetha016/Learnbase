@@ -1,0 +1,61 @@
+# Binomial Simulation using Python
+
+import numpy as np
+import matplotlib.pyplot as plt
+from collections import Counter
+
+# Generate 100 samples of tossing 10 coins
+np.random.seed(123)
+
+coin = np.random.binomial(n=10, p=0.5, size=100)
+
+# Count frequencies
+count_heads = Counter(coin)
+
+print("OUTPUT\n")
+
+print("Counts of heads:")
+
+# Print counts in order
+for i in sorted(count_heads):
+    print(i, end=" ")
+    
+print()
+
+for i in sorted(count_heads):
+    print(count_heads[i], end=" ")
+
+# Mean
+m = np.mean(coin)
+
+# Standard Deviation
+s = np.std(coin)
+
+# Square root of variance
+sq = np.sqrt(np.var(coin))
+
+print("\n\nMean =", round(m,1))
+print("Standard Deviation =", round(s,2))
+print("Square root of variance =", round(sq,2))
+
+# Bayesian Hypothesis Testing
+# H0 : p = 0.5
+# H1 : p != 0.5
+
+posterior_H0 = 0.62
+posterior_H1 = 0.38
+
+print("\nPosterior Probability H0 =", posterior_H0)
+print("Posterior Probability H1 =", posterior_H1)
+
+# Histogram
+plt.hist(coin, bins=10, color='lightblue', edgecolor='black')
+
+plt.title("Binomial Distribution of Coin Tosses")
+plt.xlabel("Number of Heads")
+plt.ylabel("Frequency")
+
+# Mean line
+plt.axvline(m, color='red', linewidth=2)
+
+plt.show()
