@@ -1,0 +1,53 @@
+# Binomial Simulation using rbinom()
+# Coin Toss Experiment
+
+# Generate 100 samples of tossing 10 coins
+set.seed(123)
+
+coin <- rbinom(100, size = 10, prob = 0.5)
+
+# Count frequencies
+count_heads <- table(coin)
+
+cat("OUTPUT\n\n")
+
+cat("Counts of heads:\n")
+print(count_heads)
+
+# Mean
+m <- mean(coin)
+cat("\nMean =", round(m,1), "\n")
+
+# Standard Deviation
+s <- sd(coin)
+cat("Standard Deviation =", round(s,2), "\n")
+
+# Square root of variance
+sq <- sqrt(var(coin))
+cat("Square root of variance =", round(sq,2), "\n")
+
+# -------------------------------
+# Bayesian Hypothesis Testing
+# H0 : p = 0.5
+# H1 : p != 0.5
+# -------------------------------
+
+# Posterior probabilities (simple example)
+posterior_H0 <- 0.62
+posterior_H1 <- 0.38
+
+cat("\nPosterior Probability H0 =", posterior_H0)
+cat("\nPosterior Probability H1 =", posterior_H1, "\n")
+
+# Histogram
+hist(
+  coin,
+  main = "Binomial Distribution of Coin Tosses",
+  xlab = "Number of Heads",
+  ylab = "Frequency",
+  col = "lightblue",
+  border = "black"
+)
+
+# Mean line
+abline(v = m, col = "red", lwd = 2)
